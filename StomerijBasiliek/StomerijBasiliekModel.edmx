@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="StomerijBasiliekModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Klant">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="KlantNummer" Type="int" Nullable="false" />
+          <Property Name="Voornaam" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Voorvoegsel" Type="nchar" MaxLength="10" />
+          <Property Name="Achternaam" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Straat" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Huisnr" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="PostCode" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Plaats" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Telefoonvast" Type="nvarchar" MaxLength="50" />
+          <Property Name="TelefoonMobiel" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Voorkeur" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Werkorder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="KlantID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Bon" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Werkzaamheden" Type="int" Nullable="false" />
+          <Property Name="Voorkeur" Type="int" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="Prijs" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Commentaar" Type="nvarchar(max)" />
+          <Property Name="DatumStart" Type="datetime" />
+          <Property Name="DatumLaatstAangepast" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_Werkorder_Klant">
+          <End Role="Klant" Type="Self.Klant" Multiplicity="1" />
+          <End Role="Werkorder" Type="Self.Werkorder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klant">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Werkorder">
+              <PropertyRef Name="KlantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StomerijBasiliekModelStoreContainer">
+          <EntitySet Name="Klant" EntityType="Self.Klant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Werkorder" EntityType="Self.Werkorder" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Werkorder_Klant" Association="Self.FK_Werkorder_Klant">
+            <End Role="Klant" EntitySet="Klant" />
+            <End Role="Werkorder" EntitySet="Werkorder" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StomerijBasiliekModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Klant">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="KlantNummer" Type="Int32" Nullable="false" />
+          <Property Name="Voornaam" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Voorvoegsel" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Achternaam" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Straat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Huisnr" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="PostCode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Plaats" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Telefoonvast" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TelefoonMobiel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Voorkeur" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Werkorder" Relationship="Self.FK_Werkorder_Klant" FromRole="Klant" ToRole="Werkorder" />
+        </EntityType>
+        <EntityType Name="Werkorder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="KlantID" Type="Guid" Nullable="false" />
+          <Property Name="Bon" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Werkzaamheden" Type="Int32" Nullable="false" />
+          <Property Name="Voorkeur" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="Prijs" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Commentaar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DatumStart" Type="DateTime" Precision="3" />
+          <Property Name="DatumLaatstAangepast" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Klant" Relationship="Self.FK_Werkorder_Klant" FromRole="Werkorder" ToRole="Klant" />
+        </EntityType>
+        <Association Name="FK_Werkorder_Klant">
+          <End Role="Klant" Type="Self.Klant" Multiplicity="1" />
+          <End Role="Werkorder" Type="Self.Werkorder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klant">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Werkorder">
+              <PropertyRef Name="KlantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StomerijBasiliekEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Klant" EntityType="Self.Klant" />
+          <EntitySet Name="Werkorder" EntityType="Self.Werkorder" />
+          <AssociationSet Name="FK_Werkorder_Klant" Association="Self.FK_Werkorder_Klant">
+            <End Role="Klant" EntitySet="Klant" />
+            <End Role="Werkorder" EntitySet="Werkorder" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="StomerijBasiliekModelStoreContainer" CdmEntityContainer="StomerijBasiliekEntities">
+          <EntitySetMapping Name="Klant">
+            <EntityTypeMapping TypeName="StomerijBasiliekModel.Klant">
+              <MappingFragment StoreEntitySet="Klant">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="KlantNummer" ColumnName="KlantNummer" />
+                <ScalarProperty Name="Voornaam" ColumnName="Voornaam" />
+                <ScalarProperty Name="Voorvoegsel" ColumnName="Voorvoegsel" />
+                <ScalarProperty Name="Achternaam" ColumnName="Achternaam" />
+                <ScalarProperty Name="Straat" ColumnName="Straat" />
+                <ScalarProperty Name="Huisnr" ColumnName="Huisnr" />
+                <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+                <ScalarProperty Name="Plaats" ColumnName="Plaats" />
+                <ScalarProperty Name="Telefoonvast" ColumnName="Telefoonvast" />
+                <ScalarProperty Name="TelefoonMobiel" ColumnName="TelefoonMobiel" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Voorkeur" ColumnName="Voorkeur" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Werkorder">
+            <EntityTypeMapping TypeName="StomerijBasiliekModel.Werkorder">
+              <MappingFragment StoreEntitySet="Werkorder">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="KlantID" ColumnName="KlantID" />
+                <ScalarProperty Name="Bon" ColumnName="Bon" />
+                <ScalarProperty Name="Werkzaamheden" ColumnName="Werkzaamheden" />
+                <ScalarProperty Name="Voorkeur" ColumnName="Voorkeur" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Prijs" ColumnName="Prijs" />
+                <ScalarProperty Name="Commentaar" ColumnName="Commentaar" />
+                <ScalarProperty Name="DatumStart" ColumnName="DatumStart" />
+                <ScalarProperty Name="DatumLaatstAangepast" ColumnName="DatumLaatstAangepast" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

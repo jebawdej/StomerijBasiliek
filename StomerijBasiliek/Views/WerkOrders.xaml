@@ -1,0 +1,150 @@
+﻿<Page x:Class="StomerijBasiliek.Views.WerkOrders"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:StomerijBasiliek.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      DataContext="{Binding Werkorders, Source={StaticResource Locator}}"
+      Title="{Binding Caption}" 
+>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="0.7*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="0.3*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <ListView Grid.Row="2" Grid.RowSpan="16" Name="lvWerkorders" HorizontalContentAlignment="Stretch" Background="Beige" ItemsSource="{Binding Werkorders}" SelectedItem="{Binding SelectedWerkorder, Mode=TwoWay}" Margin="20,0">
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding KlantDTO.Voornaam}"></TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                            <GridViewColumn.Header>
+                                <TextBlock Text="Voornaam" FontWeight="Bold" Margin="5"></TextBlock>
+                            </GridViewColumn.Header>
+                        </GridViewColumn>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding KlantDTO.Voorvoegsel}"></TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                            <GridViewColumn.Header>
+                                <TextBlock Text="Voorv." FontWeight="Bold" Margin="5"></TextBlock>
+                            </GridViewColumn.Header>
+                        </GridViewColumn>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding KlantDTO.Achternaam}"></TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                            <GridViewColumn.Header>
+                                <TextBlock Text="Achternaam" FontWeight="Bold" Margin="5"></TextBlock>
+                            </GridViewColumn.Header>
+                        </GridViewColumn>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding KlantDTO.KlantNummer}"></TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                            <GridViewColumn.Header>
+                                <TextBlock Text="Straat" FontWeight="Bold" Margin="5"></TextBlock>
+                            </GridViewColumn.Header>
+                        </GridViewColumn>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Bon}"></TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                            <GridViewColumn.Header>
+                                <TextBlock Text="Bon" FontWeight="Bold" Margin="5"></TextBlock>
+                            </GridViewColumn.Header>
+                        </GridViewColumn>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding PostCode}"></TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                            <GridViewColumn.Header>
+                                <TextBlock Text="Postcode" FontWeight="Bold" Margin="5"></TextBlock>
+                            </GridViewColumn.Header>
+                        </GridViewColumn>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Plaats}"></TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                            <GridViewColumn.Header>
+                                <TextBlock Text="Woonplaats" FontWeight="Bold" Margin="5"></TextBlock>
+                            </GridViewColumn.Header>
+                        </GridViewColumn>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <TextBlock Grid.Column="1"  Grid.Row="1" TextAlignment="Right" Text="Bon: " VerticalAlignment="Center" FontSize="15"></TextBlock>
+        <TextBox Grid.Column="2"  Grid.Row="1" TextAlignment="Left" Text="{Binding SelectedWerkorder.Bon}" VerticalAlignment="Center" FontSize="15" Margin="0,0,20,0"></TextBox>
+        <TextBlock Grid.Column="1"  Grid.Row="2" TextAlignment="Right" Text="Werkzaamheden: " VerticalAlignment="Center" FontSize="15"></TextBlock>
+        <ComboBox Grid.Column="2"  Grid.Row="2" SelectedIndex="{Binding SelectedWerkorder.Werkzaamheden}" FontSize="15" Margin="0,5,20,5">
+            <ComboBoxItem Content="Vermaken"/>
+            <ComboBoxItem Content="Stomerij"/>
+            <ComboBoxItem Content="Anders"/>
+        </ComboBox>
+        <TextBlock Grid.Column="1"  Grid.Row="3" TextAlignment="Right" Text="Kontakt voorkeur: " VerticalAlignment="Center" FontSize="15"></TextBlock>
+        <ComboBox Grid.Column="2"  Grid.Row="3" SelectedIndex="{Binding SelectedWerkorder.Voorkeur}" FontSize="15" Margin="0,5,20,5">
+            <ComboBoxItem Content="Geen"/>
+            <ComboBoxItem Content="Mobiel"/>
+            <ComboBoxItem Content="Vast"/>
+            <ComboBoxItem Content="SMS"/>
+            <ComboBoxItem Content="WhatsApp"/>
+        </ComboBox>
+        <TextBlock Grid.Column="1"  Grid.Row="4" TextAlignment="Right" Text="Status: " VerticalAlignment="Center" FontSize="15"></TextBlock>
+        <ComboBox Grid.Column="2"  Grid.Row="4" SelectedIndex="{Binding SelectedWerkorder.Status}" FontSize="15" Margin="0,5,20,5">
+            <ComboBoxItem Content="Nieuw"/>
+            <ComboBoxItem Content="Begonnen"/>
+            <ComboBoxItem Content="Klaar"/>
+            <ComboBoxItem Content="Afgewerkt"/>
+        </ComboBox>
+        <TextBlock Grid.Column="1"  Grid.Row="5" TextAlignment="Right" Text="Opmerking: " VerticalAlignment="Center" FontSize="15"></TextBlock>
+        <TextBox Grid.Column="2"  Grid.Row="5" Grid.RowSpan="4"  TextAlignment="Left" Text="{Binding SelectedWerkorder.Commentaar}" FontSize="15" Margin="0,10,20,8.2" TextWrapping="Wrap"
+                 AcceptsReturn="True"  VerticalScrollBarVisibility="Visible" Height="auto"></TextBox>
+        <StackPanel Grid.Column="1" Grid.Row="14" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Command="{Binding CancelCommand}" Content="Herstel" MinWidth="120" Margin="0,0,25,0" ></Button>
+            <Button Command="{Binding NewCommand}" Content="Niewe Order" MinWidth="120" Margin="0,0,25,0" ></Button>
+            <Button Command="{Binding UpdateCommand}" Content="Opslaan" MinWidth="120" Width="auto"></Button>
+        </StackPanel>
+    </Grid>
+</Page>
