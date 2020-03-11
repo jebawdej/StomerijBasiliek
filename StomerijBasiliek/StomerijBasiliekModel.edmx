@@ -37,6 +37,7 @@
           <Property Name="Commentaar" Type="nvarchar(max)" />
           <Property Name="DatumStart" Type="datetime" />
           <Property Name="DatumLaatstAangepast" Type="datetime" />
+          <Property Name="DatumTijdGereed" Type="datetime" />
         </EntityType>
         <Association Name="FK_Werkorder_Klant">
           <End Role="Klant" Type="Self.Klant" Multiplicity="1" />
@@ -96,6 +97,7 @@
           <Property Name="Commentaar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="DatumStart" Type="DateTime" Precision="3" />
           <Property Name="DatumLaatstAangepast" Type="DateTime" Precision="3" />
+          <Property Name="DatumTijdGereed" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Klant" Relationship="Self.FK_Werkorder_Klant" FromRole="Werkorder" ToRole="Klant" />
         </EntityType>
         <Association Name="FK_Werkorder_Klant">
@@ -156,6 +158,7 @@
                 <ScalarProperty Name="Commentaar" ColumnName="Commentaar" />
                 <ScalarProperty Name="DatumStart" ColumnName="DatumStart" />
                 <ScalarProperty Name="DatumLaatstAangepast" ColumnName="DatumLaatstAangepast" />
+                <ScalarProperty Name="DatumTijdGereed" ColumnName="DatumTijdGereed" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

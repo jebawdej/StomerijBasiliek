@@ -24,6 +24,7 @@ namespace StomerijBasiliek
         public string Commentaar { get; set; }
         public Nullable<System.DateTime> DatumStart { get; set; }
         public Nullable<System.DateTime> DatumLaatstAangepast { get; set; }
+        public Nullable<System.DateTime> DatumTijdGereed { get; set; }
     
         public virtual Klant Klant { get; set; }
     }

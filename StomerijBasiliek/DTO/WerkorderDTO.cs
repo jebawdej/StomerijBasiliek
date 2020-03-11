@@ -148,6 +148,20 @@ namespace StomerijBasiliek.DTO
                 Set<DateTime?>(() => this.DatumLaatstAangepast, ref _datumLaatstAangepast, value);
             }
         }
+
+        private DateTime? _datumTijdGereed;
+        public DateTime? DatumTijdGereed
+        {
+            get
+            {
+                return _datumTijdGereed;
+            }
+            set
+            {
+                Set<DateTime?>(() => this.DatumTijdGereed, ref _datumTijdGereed, value);
+            }
+        }
+
         public virtual KlantDTO KlantDTO { get; set; }
 
         private void RaiseWerkorderChanged()
