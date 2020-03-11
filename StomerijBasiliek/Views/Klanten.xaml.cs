@@ -24,8 +24,5 @@ namespace StomerijBasiliek.Views
         {
             InitializeComponent();
         }
-
     }
-
-
 }
