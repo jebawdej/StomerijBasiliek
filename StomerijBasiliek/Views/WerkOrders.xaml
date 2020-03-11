@@ -128,7 +128,7 @@
             <ComboBoxItem Content="Stomerij"/>
             <ComboBoxItem Content="Anders"/>
         </ComboBox>
-        <TextBlock Grid.Column="1"  Grid.Row="3" TextAlignment="Right" Text="Kontakt voorkeur: " VerticalAlignment="Center" FontSize="15"></TextBlock>
+        <TextBlock Grid.Column="1"  Grid.Row="3" TextAlignment="Right" Text="Contact voorkeur: " VerticalAlignment="Center" FontSize="15"></TextBlock>
         <ComboBox Grid.Column="2"  Grid.Row="3" SelectedIndex="{Binding SelectedWerkorder.Voorkeur}" FontSize="15" Margin="0,5,20,5">
             <ComboBoxItem Content="Geen"/>
             <ComboBoxItem Content="Mobiel"/>
