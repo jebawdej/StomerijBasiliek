@@ -307,7 +307,11 @@ namespace StomerijBasiliek.ViewModel
         {
             if(_navigationService.Parameter != null)
             {
-                Debug.WriteLine(_navigationService.Parameter);
+                Debug.WriteLine("Klanten page loaded, param= {0}", _navigationService.Parameter);
+            }
+            else
+            {
+                Debug.WriteLine("Klanten page loaded, no param");
             }
             
         }

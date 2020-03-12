@@ -1,18 +1,22 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using StomerijBasiliek.Common;
 using StomerijBasiliek.DTO;
 using StomerijBasiliek.Service;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace StomerijBasiliek.ViewModel
 {
     public class WerkOrdersViewModel : ViewModelBase
 	{
+		private IFrameNavigationService _navigationService;
 		private IWerkorderDataService _dataSrv;
 		private bool _newKlant = false;
 
@@ -20,10 +24,10 @@ namespace StomerijBasiliek.ViewModel
 		public RelayCommand CancelCommand { get; set; }
 		public RelayCommand UpdateCommand { get; set; }
 		public RelayCommand NewCommand { get; set; }
-		public WerkOrdersViewModel(IWerkorderDataService dataSrv)
+		public WerkOrdersViewModel(IWerkorderDataService dataSrv, IFrameNavigationService navigationService)
 		{
 			Caption = "WerkOrders";
-
+			_navigationService = navigationService;
 			if (IsInDesignMode)
 			{
 				// Code runs in Blend --> create design time data.
@@ -213,7 +217,25 @@ namespace StomerijBasiliek.ViewModel
 			CanNewWerkorder = CanSearchWerkorder = false;
 		}
 
+		public ICommand OnLoadedCommand
+		{
+			get
+			{
+				return new RelayCommand(() => OnLoadedPage());
+			}
+		}
 
+		private void OnLoadedPage()
+		{
+			if (_navigationService.Parameter != null)
+			{
+				Debug.WriteLine("Werkorders page loaded, param= {0}", _navigationService.Parameter);
+			}
+			else
+			{
+				Debug.WriteLine("Werkorders page loaded, no param");
+			}
+		}
 
 	}
 }

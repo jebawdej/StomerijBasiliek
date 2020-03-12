@@ -179,7 +179,7 @@ namespace StomerijBasiliek.Service
                 }
                 else
                 {
-                    klanten = _context.Klant.Where(k => k.PostCode == postCode && k.Huisnr == huisNr);
+                    klanten = _context.Klant.Where(k => k.PostCode.Replace(" ", "").ToLower() == postCode.Replace(" ", "").ToLower() && k.Huisnr == huisNr);
                 }
             }
             else
