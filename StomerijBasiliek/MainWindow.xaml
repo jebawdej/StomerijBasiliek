@@ -4,17 +4,27 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:HamburgerMenu="clr-namespace:HamburgerMenu;assembly=HamburgerMenu"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:command="http://www.galasoft.ch/mvvmlight"
         xmlns:local="clr-namespace:StomerijBasiliek"
         mc:Ignorable="d"
         Background="Beige"
         WindowState="Maximized"
         DataContext="{Binding Main, Source={StaticResource Locator}}"
         Title="{Binding MainTitle}" MinHeight="800" MinWidth="1280">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <command:EventToCommand Command="{Binding OnLoadedCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
+        <!--<Grid.Background>
+            <ImageBrush ImageSource="./assets/Logo.png" AlignmentX="Center" AlignmentY="Center"/>
+        </Grid.Background>-->
         <HamburgerMenu:HamburgerMenu Background="#002B0F" MenuIconColor="White" SelectionIndicatorColor="White" MenuItemForeground="White" HorizontalAlignment="Left">
             <!--<HamburgerMenu:HamburgerMenuItem Icon="Assets/home.png" Text="Home" SelectionCommand="{Binding GotoHomeCommand}"/>
             <HamburgerMenu:HamburgerMenuItem Icon="Assets/login.png" Text="Login" SelectionCommand="{Binding GotoLoginCommand}"/>

@@ -1,8 +1,11 @@
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using StomerijBasiliek.Common;
 using StomerijBasiliek.ViewModels.Common;
 using System;
+using System.Diagnostics;
 using System.Timers;
+using System.Windows.Input;
 
 namespace StomerijBasiliek.ViewModel
 {
@@ -64,6 +67,26 @@ namespace StomerijBasiliek.ViewModel
                 _mainTitle = value;
                 RaisePropertyChanged(() => MainTitle);
             }
+        }
+
+        public ICommand OnLoadedCommand
+        {
+            get
+            {
+                return new RelayCommand(() => OnLoadedPage());
+            }
+        }
+        private void OnLoadedPage()
+        {
+            if (_navigationService.Parameter != null)
+            {
+                Debug.WriteLine("Main page loaded, param= {0}", _navigationService.Parameter);
+            }
+            else
+            {
+                Debug.WriteLine("Main page loaded, no param");
+            }
+            _navigationService.NavigateTo("KlantenView");
         }
     }
 }
