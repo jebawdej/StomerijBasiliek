@@ -207,6 +207,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\Logo.png" />
+    <Resource Include="Assets\StomerijBasiliek.png" />
     <Content Include="Log4net.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
