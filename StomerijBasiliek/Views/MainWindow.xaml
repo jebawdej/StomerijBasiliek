@@ -1,4 +1,4 @@
-﻿<Window x:Class="StomerijBasiliek.MainWindow"
+﻿<Window x:Class="StomerijBasiliek.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -29,8 +29,8 @@
             <!--<HamburgerMenu:HamburgerMenuItem Icon="Assets/home.png" Text="Home" SelectionCommand="{Binding GotoHomeCommand}"/>
             <HamburgerMenu:HamburgerMenuItem Icon="Assets/login.png" Text="Login" SelectionCommand="{Binding GotoLoginCommand}"/>
             <HamburgerMenu:HamburgerMenuItem Icon="Assets/note.png" Text="Notes" SelectionCommand="{Binding GotoNotesCommand}"/>-->
-            <HamburgerMenu:HamburgerMenuItem Icon="Assets/login.png" Text="Klanten" SelectionCommand="{Binding GotoKlantenCommand}"/>
-            <HamburgerMenu:HamburgerMenuItem Icon="Assets/note.png" Text="Werkorders" SelectionCommand="{Binding GotoWerkordersCommand}"/>
+            <HamburgerMenu:HamburgerMenuItem Icon="../Assets/login.png" Text="Klanten" SelectionCommand="{Binding GotoKlantenCommand}"/>
+            <HamburgerMenu:HamburgerMenuItem Icon="../Assets/note.png" Text="Werkorders" SelectionCommand="{Binding GotoWerkordersCommand}"/>
         </HamburgerMenu:HamburgerMenu>
         <Frame Name="MainFrame" Height="800" Grid.Column="2" NavigationUIVisibility="Hidden"></Frame>
     </Grid>
