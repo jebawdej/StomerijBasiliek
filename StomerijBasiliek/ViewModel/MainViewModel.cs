@@ -23,6 +23,8 @@ namespace StomerijBasiliek.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
+        readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         private IFrameNavigationService _navigationService;
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
