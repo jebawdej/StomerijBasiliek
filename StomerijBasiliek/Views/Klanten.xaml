@@ -158,9 +158,10 @@
             <ComboBoxItem Content="WhatsApp"/>
         </ComboBox>
         <StackPanel Grid.Column="1" Grid.Row="14" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Command="{Binding CancelCommand}" Content="Herstel" MinWidth="120" Margin="0,0,25,0" ></Button>
-            <Button Command="{Binding NewCommand}" Content="Niewe Klant" MinWidth="120" Margin="0,0,25,0" ></Button>
-            <Button Command="{Binding UpdateCommand}" Content="Opslaan" MinWidth="120" Width="auto"></Button>
+            <Button Command="{Binding CancelCommand}" Content="Herstel" MinWidth="100" Margin="0,0,25,0" ></Button>
+            <Button Command="{Binding NewCommand}" Content="Niewe Klant" MinWidth="100" Margin="0,0,25,0" ></Button>
+            <Button Command="{Binding UpdateCommand}" Content="Opslaan" MinWidth="100" Width="auto" Margin="0,0,25,0"></Button>
+            <Button Command="{Binding NewOrderCommand}" Content="Nieuwe Order" MinWidth="100" Width="auto"></Button>
         </StackPanel>
     </Grid>
 </Page>

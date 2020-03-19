@@ -27,6 +27,8 @@ namespace StomerijBasiliek.ViewModel
         public RelayCommand CancelCommand { get; set; }
         public RelayCommand UpdateCommand { get; set; }
         public RelayCommand NewCommand { get; set; }
+        public RelayCommand NewOrderCommand { get; set; }
+        
         public KlantenViewModel(IKlantDataService datasrv, IFrameNavigationService navigationService) 
 		{
             _dataSrv = datasrv;
@@ -48,11 +50,20 @@ namespace StomerijBasiliek.ViewModel
                 UpdateCommand = new RelayCommand(() => ExecuteUpdateKlant(), () => CanUpdateKlant);
                 SearchCommand = new RelayCommand(() => ExecuteSearchKlant(), () => CanSearchKlant);
                 NewCommand = new RelayCommand(() => ExecuteNewKlant(), () => CanNewKlant);
+                NewOrderCommand = new RelayCommand(() => ExecuteNewOrder(), () => CanNewKlant);
 
                 SelectedKlant = Klanten.FirstOrDefault(k => k.KlantNummer == _dataSrv.MaxKlantNr());
 
             }
 		}
+
+        private void ExecuteNewOrder()
+        {
+            if((SelectedKlant != null) && (SelectedKlant.Id != Guid.Empty))
+            {
+                _navigationService.NavigateTo("WerkordersView", SelectedKlant.Id);
+            }
+        }
 
         public string Caption
         {

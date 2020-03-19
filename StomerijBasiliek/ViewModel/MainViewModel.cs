@@ -48,7 +48,7 @@ namespace StomerijBasiliek.ViewModel
         }
         public MyCommand GotoKlantenCommand
         {
-            get { return new MyCommand(x => _navigationService.NavigateTo("KlantenView", "Ik ben een parameter")); }
+            get { return new MyCommand(x => _navigationService.NavigateTo("KlantenView")); }
         }
         public MyCommand GotoWerkordersCommand
         {
