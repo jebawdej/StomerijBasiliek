@@ -10,13 +10,16 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace StomerijBasiliek.ViewModel
 {
     public class WerkOrdersViewModel : ViewModelBase
 	{
-		private IFrameNavigationService _navigationService;
+        readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        private IFrameNavigationService _navigationService;
 		private IWerkorderDataService _dataSrv;
 		private bool _newKlant = false;
 
@@ -41,11 +44,19 @@ namespace StomerijBasiliek.ViewModel
 				UpdateCommand = new RelayCommand(() => ExecuteUpdateWerkorder(), () => CanUpdateWerkorder);
 				SearchCommand = new RelayCommand(() => ExecuteSearchWerkorder(), () => CanSearchWerkorder);
 				NewCommand    = new RelayCommand(() => ExecuteNewWerkorder   (), () => CanNewWerkorder);
+                if(Werkorders!=null)
+                {
+                    if (Werkorders.Count > 0)
+                        SelectedWerkorder = Werkorders[Werkorders.Count - 1];
+                }
+                else
+                {
+                    log.Error("Kan Werkorder database niet bereiken");
+                    MessageBox.Show("Kan Werkorder database niet bereiken", "ERROR");
+                }
 
-				if(Werkorders.Count > 0)
-					SelectedWerkorder = Werkorders[Werkorders.Count-1];
 
-			}
+            }
 		}
 
 		private bool _canNewWerkorder;

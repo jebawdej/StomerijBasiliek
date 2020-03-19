@@ -48,8 +48,15 @@ namespace StomerijBasiliek.ViewModel
                 UpdateCommand = new RelayCommand(() => ExecuteUpdateKlant(), () => CanUpdateKlant);
                 SearchCommand = new RelayCommand(() => ExecuteSearchKlant(), () => CanSearchKlant);
                 NewCommand = new RelayCommand(() => ExecuteNewKlant(), () => CanNewKlant);
+                if(Klanten!=null)
+                {
+                    SelectedKlant = Klanten.FirstOrDefault(k => k.KlantNummer == _dataSrv.MaxKlantNr());
+                }
+                else
+                {
 
-                SelectedKlant = Klanten.FirstOrDefault(k => k.KlantNummer == _dataSrv.MaxKlantNr());
+                    MessageBox.Show("Kan klantendatabase niet bereiken", "ERROR");
+                }
 
             }
 		}
