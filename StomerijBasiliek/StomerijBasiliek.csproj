@@ -143,12 +143,12 @@
     <Compile Include="Views\WerkOrders.xaml.cs">
       <DependentUpon>WerkOrders.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Werkorder.cs">
-      <DependentUpon>StomerijBasiliekModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Werkorder.cs">
+      <DependentUpon>StomerijBasiliekModel.tt</DependentUpon>
     </Compile>
     <Page Include="Views\Klanten.xaml">
       <SubType>Designer</SubType>
@@ -206,11 +206,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\Logo.png" />
-    <Resource Include="Assets\StomerijBasiliek.png" />
-    <Content Include="Log4net.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="StomerijBasiliekModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>StomerijBasiliekModel.edmx</DependentUpon>
@@ -220,6 +215,11 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>StomerijBasiliekModel.edmx</DependentUpon>
       <LastGenOutput>StomerijBasiliekModel.cs</LastGenOutput>
+    </Content>
+    <Resource Include="Assets\Logo.png" />
+    <Resource Include="Assets\StomerijBasiliek.png" />
+    <Content Include="Log4net.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>

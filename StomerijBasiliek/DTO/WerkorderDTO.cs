@@ -149,22 +149,36 @@ namespace StomerijBasiliek.DTO
             }
         }
 
-        private DateTime? _datumTijdGereed;
-        public DateTime? DatumTijdGereed
+        private DateTime? _datumGereed;
+        public DateTime? DatumGereed
         {
             get
             {
-                return _datumTijdGereed;
+                return _datumGereed;
             }
             set
             {
-                Set<DateTime?>(() => this.DatumTijdGereed, ref _datumTijdGereed, value);
+                Set<DateTime?>(() => this.DatumGereed, ref _datumGereed, value);
+                RaiseWerkorderChanged();
             }
         }
 
-        public virtual KlantDTO KlantDTO { get; set; }
+        private int _tijdGereedNa;
+        public int TijdGereedNa
+        {
+            get
+            {
+                return _tijdGereedNa;
+            }
+            set
+            {
+                Set<int>(() => this.TijdGereedNa, ref _tijdGereedNa, value);
+                RaiseWerkorderChanged();
+            }
+        }
+	    public virtual KlantDTO KlantDTO { get; set; }
 
-        private void RaiseWerkorderChanged()
+	    private void RaiseWerkorderChanged()
         {
             WerkorderChanged?.Invoke(this, EventArgs.Empty);
         }

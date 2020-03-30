@@ -49,15 +49,14 @@ namespace StomerijBasiliek.ViewModel
                 CancelCommand = new RelayCommand(() => ExecuteCancelKlant(), () => CanCancelKlant);
                 UpdateCommand = new RelayCommand(() => ExecuteUpdateKlant(), () => CanUpdateKlant);
                 SearchCommand = new RelayCommand(() => ExecuteSearchKlant(), () => CanSearchKlant);
-                NewCommand = new RelayCommand(() => ExecuteNewKlant(), () => CanNewKlant);
-                if(Klanten!=null)
+                NewCommand    = new RelayCommand(() => ExecuteNewKlant(),    () => CanNewKlant);
+                NewOrderCommand = new RelayCommand(() => ExecuteNewOrder(),  () => CanNewKlant);
+                if (Klanten!=null)
                 {
                     SelectedKlant = Klanten.FirstOrDefault(k => k.KlantNummer == _dataSrv.MaxKlantNr());
                 }
                 else
                 {
-                NewOrderCommand = new RelayCommand(() => ExecuteNewOrder(), () => CanNewKlant);
-
                     MessageBox.Show("Kan klantendatabase niet bereiken", "ERROR");
                 }
 
@@ -177,6 +176,7 @@ namespace StomerijBasiliek.ViewModel
                     RaisePropertyChanged("CanNewKlant");
                 }
                 NewCommand.RaiseCanExecuteChanged();
+                NewOrderCommand.RaiseCanExecuteChanged();
             }
         }
 

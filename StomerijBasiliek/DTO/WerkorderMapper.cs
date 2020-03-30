@@ -15,16 +15,19 @@ namespace StomerijBasiliek.DTO
         public WerkorderMapper()
         {
             var config = new MapperConfiguration(cfg => {
-                cfg.CreateMap<Werkorder, WerkorderDTO>();
-                cfg.CreateMap<WerkorderDTO, Werkorder>();
+                cfg.CreateMap<Werkorder, WerkorderDTO>().ForMember(x=>x.KlantDTO, opt => opt.Ignore());
+                cfg.CreateMap<WerkorderDTO, Werkorder>().ForMember(x => x.Klant, opt => opt.Ignore());
                 cfg.CreateMap<WerkorderDTO, WerkorderDTO>();
                 cfg.CreateMap<Klant, KlantDTO>();
+                cfg.CreateMap<KlantDTO, Klant>();
             });
             _mapper = config.CreateMapper();
         }
 
         public Werkorder ConvertFromDTO(WerkorderDTO WerkorderDto)
         {
+            Werkorder w = _mapper.Map<Werkorder>(WerkorderDto);
+            w.Klant = _mapper.Map<Klant>(WerkorderDto.KlantDTO);
             return _mapper.Map<Werkorder>(WerkorderDto);
         }
 

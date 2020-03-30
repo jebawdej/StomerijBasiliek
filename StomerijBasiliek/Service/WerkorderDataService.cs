@@ -19,6 +19,7 @@ namespace StomerijBasiliek.Service
         {
             _context = new StomerijBasiliekEntities();
             _werkorderMapper = new WerkorderMapper();
+            _klantMapper = new KlantMapper();
         }
         public bool Add(WerkorderDTO werkorder)
         {

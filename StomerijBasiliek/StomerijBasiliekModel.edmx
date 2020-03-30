@@ -37,7 +37,8 @@
           <Property Name="Commentaar" Type="nvarchar(max)" />
           <Property Name="DatumStart" Type="datetime" />
           <Property Name="DatumLaatstAangepast" Type="datetime" />
-          <Property Name="DatumTijdGereed" Type="datetime" />
+          <Property Name="DatumGereed" Type="datetime" />
+          <Property Name="TijdGereedNa" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Werkorder_Klant">
           <End Role="Klant" Type="Self.Klant" Multiplicity="1" />
@@ -97,7 +98,8 @@
           <Property Name="Commentaar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="DatumStart" Type="DateTime" Precision="3" />
           <Property Name="DatumLaatstAangepast" Type="DateTime" Precision="3" />
-          <Property Name="DatumTijdGereed" Type="DateTime" Precision="3" />
+          <Property Name="DatumGereed" Type="DateTime" Precision="3" />
+          <Property Name="TijdGereedNa" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Klant" Relationship="Self.FK_Werkorder_Klant" FromRole="Werkorder" ToRole="Klant" />
         </EntityType>
         <Association Name="FK_Werkorder_Klant">
@@ -158,7 +160,8 @@
                 <ScalarProperty Name="Commentaar" ColumnName="Commentaar" />
                 <ScalarProperty Name="DatumStart" ColumnName="DatumStart" />
                 <ScalarProperty Name="DatumLaatstAangepast" ColumnName="DatumLaatstAangepast" />
-                <ScalarProperty Name="DatumTijdGereed" ColumnName="DatumTijdGereed" />
+                <ScalarProperty Name="DatumGereed" ColumnName="DatumGereed" />
+                <ScalarProperty Name="TijdGereedNa" ColumnName="TijdGereedNa" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
