@@ -55,9 +55,8 @@ namespace StomerijBasiliek.Service
                 {
                     _context.Werkorder.Remove(w);
                     _context.SaveChanges();
-                    log.InfoFormat("Werkorder met bon {0}, verwijderd", w.Bon);
-                    log.DebugFormat("\r\nNaam: {0} {1} {2}\r\nAdres: {3} {4} {5} {6}\r\nContact: V:{7} M:{8} E:{9}", w.Klant.Voornaam, w.Klant.Voorvoegsel, w.Klant.Achternaam, w.Klant.Straat, w.Klant.Huisnr, w.Klant.PostCode, w.Klant.Plaats, w.Klant.Telefoonvast, w.Klant.TelefoonMobiel, w.Klant.Email);
-
+                    log.InfoFormat("Werkorder met bon {0} van KlantID {1}, verwijderd", w.Bon, w.KlantID);
+                    retVal = true;
                 }
                 else
                 {
@@ -108,7 +107,7 @@ namespace StomerijBasiliek.Service
             ObservableCollection<WerkorderDTO> werkorders = null;
             try
             {
-                werkorders = _werkorderMapper.ConvertToDTO(_context.Werkorder);
+                werkorders = _werkorderMapper.ConvertToDTO(_context.Werkorder.Include("Klant"));
                 if (werkorders != null)
                 {
                     log.Info("Werkorders opgehaald");

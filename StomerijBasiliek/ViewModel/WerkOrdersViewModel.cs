@@ -27,7 +27,7 @@ namespace StomerijBasiliek.ViewModel
 		public RelayCommand SearchCommand { get; set; }
 		public RelayCommand CancelCommand { get; set; }
 		public RelayCommand UpdateCommand { get; set; }
-		public RelayCommand NewCommand { get; set; }
+		public RelayCommand DeleteCommand { get; set; }
 		public WerkOrdersViewModel(IWerkorderDataService dataSrvWo, IKlantDataService dataSrvKlant, IFrameNavigationService navigationService)
 		{
 			Caption = "WerkOrders";
@@ -45,7 +45,7 @@ namespace StomerijBasiliek.ViewModel
 				CancelCommand = new RelayCommand(() => ExecuteCancelWerkorder(), () => CanCancelWerkorder);
 				UpdateCommand = new RelayCommand(() => ExecuteUpdateWerkorder(), () => CanUpdateWerkorder);
 				SearchCommand = new RelayCommand(() => ExecuteSearchWerkorder(), () => CanSearchWerkorder);
-				NewCommand    = new RelayCommand(() => ExecuteNewWerkorder   (), () => CanNewWerkorder);
+				DeleteCommand    = new RelayCommand(() => ExecuteDeleteWerkorder(), () => CanDeleteWerkorder);
                 if(Werkorders!=null)
                 {
                     if (Werkorders.Count > 0)
@@ -59,21 +59,21 @@ namespace StomerijBasiliek.ViewModel
             }
 		}
 
-		private bool _canNewWerkorder;
-		public bool CanNewWerkorder
+		private bool _canDeleteWerkorder;
+		public bool CanDeleteWerkorder
 		{
 			get
 			{
-				return _canNewWerkorder;
+				return _canDeleteWerkorder;
 			}
 			set
 			{
-				if (value != _canNewWerkorder)
+				if (value != _canDeleteWerkorder)
 				{
-					_canNewWerkorder = value;
-					RaisePropertyChanged("CanNewWerkorder");
+					_canDeleteWerkorder = value;
+					RaisePropertyChanged("CanDeleteWerkorder");
 				}
-				NewCommand.RaiseCanExecuteChanged();
+				DeleteCommand.RaiseCanExecuteChanged();
 			}
 		}
 
@@ -144,13 +144,13 @@ namespace StomerijBasiliek.ViewModel
 			SelectedWerkorder.Status = 0;
 
 			CanUpdateWerkorder = CanCancelWerkorder = true;
-			CanNewWerkorder = CanSearchWerkorder = false;
+			CanDeleteWerkorder = CanSearchWerkorder = false;
 		}
 
 		private void ExecuteSearchWerkorder()
 		{
 			CanUpdateWerkorder = CanCancelWerkorder = false;
-			CanNewWerkorder = CanSearchWerkorder = true;
+			CanDeleteWerkorder = CanSearchWerkorder = true;
 
 		}
 
@@ -164,7 +164,7 @@ namespace StomerijBasiliek.ViewModel
 					Werkorders = _dataSrvWO.GetAll();
 					if (Werkorders.Count > 0)
 						SelectedWerkorder = Werkorders[Werkorders.Count - 1];
-					CanNewWerkorder = CanSearchWerkorder = true;
+					CanDeleteWerkorder = CanSearchWerkorder = true;
 					CanUpdateWerkorder = CanCancelWerkorder = false;
 				}
 				else
@@ -179,7 +179,7 @@ namespace StomerijBasiliek.ViewModel
 				{
 					if (Werkorders.Count > 0)
 						SelectedWerkorder = _dataSrvWO.Get(SelectedWerkorder.Id);
-					CanNewWerkorder = CanSearchWerkorder = true;
+					CanDeleteWerkorder = CanSearchWerkorder = true;
 					CanUpdateWerkorder = CanCancelWerkorder = false;
 					_newKlant = false;
 				}
@@ -196,8 +196,32 @@ namespace StomerijBasiliek.ViewModel
 			if (Werkorders.Count > 0)
 				SelectedWerkorder = Werkorders[Werkorders.Count-1];
 			CanUpdateWerkorder = CanCancelWerkorder = false;
-			CanNewWerkorder = CanSearchWerkorder = true;
+			CanDeleteWerkorder = CanSearchWerkorder = true;
 			_newKlant = false;
+		}
+		
+		private void ExecuteDeleteWerkorder()
+		{
+			if(SelectedWerkorder != null)
+			{
+				string text = String.Format("Weet je zeker dat je werkorder met bon nummer {0} van klant met nummer {1} , wilt verwijderen?", SelectedWerkorder.Bon, SelectedWerkorder.KlantDTO.KlantNummer);
+				if(MessageBox.Show(text, "Waarschuwing",MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+				{
+					if(!_dataSrvWO.Delete(SelectedWerkorder.Id))
+					{
+						MessageBox.Show("Kan werkorder niet verwijderen, probeer het nogmaals", "Error");
+					}
+					else
+					{
+						Werkorders = _dataSrvWO.GetAll();
+						if (Werkorders.Count > 0)
+							SelectedWerkorder = Werkorders[Werkorders.Count - 1];
+					}
+				}
+			}
+
+			CanDeleteWerkorder = CanSearchWerkorder = true;
+			CanUpdateWerkorder = CanCancelWerkorder = false;
 		}
 
 		private DateTime _currentDateTime;
@@ -266,7 +290,7 @@ namespace StomerijBasiliek.ViewModel
 					RaisePropertyChanged("SelectedWerkorder");
 				}
 				CanCancelWerkorder = CanUpdateWerkorder = false;
-				CanNewWerkorder = true;
+				CanDeleteWerkorder = true;
 				CanSearchWerkorder = true;
 				SelectedWerkorder.WerkorderChanged -= WerkorderChanged;
 				SelectedWerkorder.WerkorderChanged += WerkorderChanged;
@@ -284,7 +308,7 @@ namespace StomerijBasiliek.ViewModel
 			//	GereedNaTijdIndex = SelectedWerkorder.DatumTijdGereed.Value.Hour - 9;
 			//}
 			CanUpdateWerkorder = CanCancelWerkorder= true;
-			CanNewWerkorder = CanSearchWerkorder = false;
+			CanDeleteWerkorder = CanSearchWerkorder = false;
 		}
 
 		public ICommand OnLoadedCommand

@@ -63,7 +63,7 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                             <GridViewColumn.Header>
-                                <TextBlock Text="Voorv." FontWeight="Bold" Margin="5"></TextBlock>
+                                <TextBlock Text="Tussenv" FontWeight="Bold" Margin="5"></TextBlock>
                             </GridViewColumn.Header>
                         </GridViewColumn>
                         <GridViewColumn>
@@ -83,7 +83,7 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                             <GridViewColumn.Header>
-                                <TextBlock Text="Straat" FontWeight="Bold" Margin="5"></TextBlock>
+                                <TextBlock Text="KlantNr" FontWeight="Bold" Margin="5"></TextBlock>
                             </GridViewColumn.Header>
                         </GridViewColumn>
                         <GridViewColumn>
@@ -99,7 +99,7 @@
                         <GridViewColumn>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding PostCode}"></TextBlock>
+                                    <TextBlock Text="{Binding KlantDTO.PostCode}"></TextBlock>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                             <GridViewColumn.Header>
@@ -109,7 +109,7 @@
                         <GridViewColumn>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Plaats}"></TextBlock>
+                                    <TextBlock Text="{Binding KlantDTO.Plaats}"></TextBlock>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                             <GridViewColumn.Header>
@@ -165,7 +165,7 @@
                  AcceptsReturn="True"  VerticalScrollBarVisibility="Visible" Height="auto"></TextBox>
         <StackPanel Grid.Column="1" Grid.Row="14" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Command="{Binding CancelCommand}" Content="Herstel" MinWidth="120" Margin="0,0,25,0" ></Button>
-            <Button Command="{Binding NewCommand}" Content="Niewe Order" MinWidth="120" Margin="0,0,25,0" ></Button>
+            <Button Command="{Binding DeleteCommand}" Content="Verwijder" MinWidth="120" Margin="0,0,25,0" ></Button>
             <Button Command="{Binding UpdateCommand}" Content="Opslaan" MinWidth="120" Width="auto"></Button>
         </StackPanel>
     </Grid>
